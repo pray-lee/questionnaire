@@ -1,12 +1,13 @@
 import axios from '@/api/index'
 
-export const generateCard = ({userName, assignedPerson, numbers}) => axios.request({
+export const generateCard = ({userName, assignedPerson, numbers, roleId}) => axios.request({
     url: '/experSysApi.do?doSave',
     method: 'GET',
     params: {
         userName,
         assignedPerson,
-        numbers
+        numbers,
+        roleId
     }
 })
 

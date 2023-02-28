@@ -18,7 +18,8 @@ module.exports = {
         proxy: {
             '/api': {
               // target: 'http://localhost:8080/jeecg',
-              target: 'https://www.caika.net/test/',
+            //   target: 'https://www.caika.net/test/',
+              target: 'http://192.168.10.91/experience/',
               secure: false,
               pathRewrite: {
                   '^/api': ''

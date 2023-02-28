@@ -10,6 +10,17 @@
           <label for="">数量：</label>
           <input type="text" placeholder="请输入数量" v-model="numbers"/>
         </div>
+        <div class="num">
+          <label for="">角色：</label>
+          <el-select v-model="roleId" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </div>
         <button class="generate" @click="generate">生成</button>
       </div>
       <div id="list-area" v-cloak>
@@ -67,6 +78,8 @@ export default {
   data() {
     return {
       list: [],
+      options: [],
+      roleId: '',
       assignedPerson: '',
       numbers: ''
     };
@@ -83,7 +96,9 @@ export default {
     getCardList() {
       getCard(this.userName).then((res) => {
         if (res.data.success) {
-          this.list = res.data.result;
+          this.list = res.data.result?.distributeAccountList;
+          // 8a8ab0b246dc81120146dc8181870050 是管理员
+          this.options = res.data.result?.roleList.filter(item => item.id !== '8a8ab0b246dc81120146dc8181870050')
           this.$nextTick(() => {
             this.bs.refresh()
           })
@@ -102,6 +117,7 @@ export default {
             userName:this.userName,
             assignedPerson:this.assignedPerson,
             numbers:this.numbers,
+            roleId: this.roleId
         })
             .then(res => {
                 if(res.data.success) {
@@ -167,7 +183,23 @@ export default {
   font-size: 30px;
   color: #666;
 }
-.input-area input {
+.el-select{
+  flex: 1
+}
+.input-area >>> input::placeholder {
+    color: #3276c3;
+    opacity: 1; /* Firefox */
+  }
+  
+ .input-area >>> input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #3276c3;
+  }
+  
+  .input-area >>> input::-ms-input-placeholder { /* Microsoft Edge */
+   color: #3276c3;
+  }
+.input-area >>> input {
+  width: 100%;
   -webkit-appearance: none;
   flex: 1;
   outline: 0;
