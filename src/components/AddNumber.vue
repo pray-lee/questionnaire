@@ -97,8 +97,7 @@ export default {
       getCard(this.userName).then((res) => {
         if (res.data.success) {
           this.list = res.data.result?.distributeAccountList;
-          // 8a8ab0b246dc81120146dc8181870050 是管理员
-          this.options = res.data.result?.roleList.filter(item => item.id !== '8a8ab0b246dc81120146dc8181870050')
+          this.options = res.data.result?.roleList.filter(item => item.id == '2c91e3ec6b6d9e14016b6ed042a80a7f' || item.id == '2c91e3eb728287550172b5fda93401dc')
           this.$nextTick(() => {
             this.bs.refresh()
           })

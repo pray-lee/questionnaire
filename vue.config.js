@@ -19,7 +19,8 @@ module.exports = {
             '/api': {
               // target: 'http://localhost:8080/jeecg',
             //   target: 'https://www.caika.net/test/',
-              target: 'http://192.168.10.91/experience/',
+            //   target: 'http://192.168.10.91/experience/',
+              target: 'https://www.caika.net/experience/',
               secure: false,
               pathRewrite: {
                   '^/api': ''
